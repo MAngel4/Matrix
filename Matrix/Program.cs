@@ -73,6 +73,25 @@ class Program
 
         return matrixC;
     }
+    static int[,] MatrixMinus(int[,] matrixA, int[,] matrixB)
+    {
+        if ((matrixA.ColumnsCount() != matrixB.ColumnsCount()) || (matrixA.RowsCount() != matrixB.RowsCount()))
+        {
+            throw new Exception("Для матриц с разным размером сложение не возможно!");
+        }
+
+        var matrixX = new int[matrixA.RowsCount(), matrixB.ColumnsCount()];
+
+        for (var i = 0; i < matrixA.RowsCount(); i++)
+        {
+            for (var j = 0; j < matrixB.ColumnsCount(); j++)
+            {
+                matrixX[i, j] = matrixA[i, j] - matrixB[i, j];
+            }
+        }
+
+        return matrixX;
+    }
 
     static void Main(string[] args)
     {
@@ -90,7 +109,11 @@ class Program
         var result = MatrixSum(a, b);
         Console.WriteLine("Сумма матриц:");
         PrintMatrix(result);
+        var resultminus = MatrixMinus(a, b);
+        Console.WriteLine("Разность матриц:");
+        PrintMatrix(resultminus);
 
         Console.ReadLine();
     }
 }
+
